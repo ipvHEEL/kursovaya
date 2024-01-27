@@ -6,6 +6,7 @@ from PyQt5.QtCore import Qt
 import mysql.connector
 import matplotlib.pyplot as plt
 import pandas as pd
+import subprocess
 from openpyxl import Workbook
 
 class RegistrationWindow(QWidget):
@@ -391,7 +392,7 @@ class MainMenu(QWidget):
             # Создаем Excel-файл
             excel_file = "турниры_и_участники.xlsx"
             df.to_excel(excel_file, index=False, sheet_name="Лист1")
-
+            subprocess.Popen(["start", "excel", excel_file], shell=True)
             QMessageBox.information(self, "Экспорт в Excel", f"Данные успешно экспортированы в {excel_file}")
 
         except mysql.connector.Error as err:
